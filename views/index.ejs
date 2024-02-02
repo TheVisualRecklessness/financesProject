@@ -1,8 +1,30 @@
 <%- include("./partials/header.ejs") %>
 
+        <% if(locals.users) {%>
+            <form action="/user" method="POST">
+                <% users.forEach(user => { %>
+                    <button 
+                            type="submit" 
+                            class="search-by-id" 
+                            name="user" 
+                            value="<%= user.id %>" 
+                            id="<%= user.id %>"
+                    >
+                        <%= user.nombre %>
+                    </button>
+                <%}); %>
+            </form>
+        <% } else { %>
+            Prueba mas tarde.
+        <% } %>
         <h1>
-            <%= data %>
+            <% if (locals.infoSaldo) { %>
+                Saldo de <%= users[currentUser-1].nombre %>: $<%= infoSaldo %>
+            <% } else { %>
+                Selecciona a un usuario!
+            <% } %>
         </h1>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="/scripts/scripts.js" async defer></script>
     </body>

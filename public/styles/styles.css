@@ -11,10 +11,23 @@ nav{
     background-color: beige;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr;
 }
 
 #navBar{
     display: flex;
     grid-column: 2/span 4;
     background-color: red;
+}
+
+.search-by-id {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #0000EE;
+    padding: 0;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
 }
