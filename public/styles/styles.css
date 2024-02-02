@@ -1,0 +1,20 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: antiquewhite;
+}
+
+nav{
+    width: 100vw;
+    height: 100px;
+    position: sticky;
+    background-color: beige;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+#navBar{
+    display: flex;
+    grid-column: 2/span 4;
+    background-color: red;
+}
