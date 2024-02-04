@@ -102,13 +102,39 @@ app.post("/ingresos", async (req,res) => {
             [cuenta]
         );
         let antiguoSaldo = parseFloat(quSaldo.rows[0].saldo);
-        let nuevoSaldo = importe+antiguoSaldo;
+        let nuevoSaldo = antiguoSaldo+importe;
         
         let upSaldo = await db.query(
             "UPDATE cuentas "+
             "SET saldo = $1 "+
             "WHERE id = $2;",
-            [importe,cuenta]
+            [nuevoSaldo,cuenta]
+        );
+        res.redirect("/");
+        
+    } catch (error) {
+      console.log(error.message);  
+    } 
+});
+
+app.post("/egresos", async (req,res) => {
+    let importe = parseFloat(req.body.importe);
+    let cuenta = req.body.cuenta;
+    try {
+        let quSaldo = await db.query(
+            "SELECT saldo "+
+            "FROM cuentas "+
+            "WHERE id=$1",
+            [cuenta]
+        );
+        let antiguoSaldo = parseFloat(quSaldo.rows[0].saldo);
+        let nuevoSaldo = antiguoSaldo-importe;
+        
+        let upSaldo = await db.query(
+            "UPDATE cuentas "+
+            "SET saldo = $1 "+
+            "WHERE id = $2;",
+            [nuevoSaldo,cuenta]
         );
         res.redirect("/");
         
