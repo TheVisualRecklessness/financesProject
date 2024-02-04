@@ -1,23 +1,25 @@
 body{
     margin: 0px;
     padding: 0px;
-    background-color: antiquewhite;
+    background-color: rgb(49, 48, 47);
+    color: white;
 }
 
 nav{
     width: 100vw;
-    height: 100px;
-    position: sticky;
+    height: 5vh;
+    /* position: fixed; */
     background-color: beige;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr 1fr;
 }
 
 #navBar{
     display: flex;
     grid-column: 2/span 4;
     background-color: red;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .search-by-id {
@@ -25,9 +27,36 @@ nav{
     outline: none;
     background: none;
     cursor: pointer;
-    color: #0000EE;
+    color: #ffffff;
     padding: 0;
     text-decoration: underline;
     font-family: inherit;
     font-size: inherit;
+}
+
+#menuBtn {
+    grid-column: 1;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+#push {
+    height: 30px;
+    background-color: gray;
+    border: none;
+    outline: none;
+}
+
+.seleccion {
+    height: 30px;
+    align-self: center;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
 }
