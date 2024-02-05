@@ -73,12 +73,21 @@ app.get("/", async (req,res)=>{
             "SELECT * FROM usuarios;"
         );
         const result = users.rows;
+        const movements = await db.query(
+            "SELECT movimientos.id,movimientos.tipo,movimientos.categoria,movimientos.importe,movimientos.fecha,movimientos.observacion, cuentas.nombre FROM movimientos JOIN cuentas ON movimientos.id_cuenta = cuentas.id WHERE movimientos.id_usuario=$1;",
+            [currentUserId]
+        );
+
+        console.log(movements.rows);
+
         res.render("index.ejs", {
             users: result,
             currentUser: currentUserId, 
             infoSaldo: saldoIndividual,
-            cuentas: currentUserInfo
+            cuentas: currentUserInfo,
+            movements: movements.rows
         });
+
     } catch (error) {
         console.log(error.message);
         res.render("index.ejs",{users:error.message});
