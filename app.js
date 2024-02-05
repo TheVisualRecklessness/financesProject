@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session';
 import bodyParser from 'body-parser';
 import { conf } from "./config.js";
 import pg from "pg";
@@ -17,14 +16,13 @@ db.connect();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
-app.use(session({
-    secret: conf.key,
-    resave: false,
-    saveUninitialized: true,
-  }));
 
-async function getUserInfo(userId) {
-    let saldoIndividual = 0;
+let currentUserId = 0;
+let currentUserInfo = [];
+let saldoIndividual = 0;
+
+async function userInfo() {
+    saldoIndividual = 0;
     try {
         let response = await db.query(
             "SELECT usuarios.nombre, cuentas.id as cuenta_id, "+
@@ -34,12 +32,12 @@ async function getUserInfo(userId) {
             "ON usuarios.id = cuentas.id_usuario "+
             "WHERE usuarios.id = $1 "+
             "ORDER BY cuenta_id",
-            [userId]
+            [currentUserId]
         );
         response.rows.forEach(cuenta => {
             saldoIndividual+=parseFloat(cuenta.saldo);
         });
-        return {userInfo: response.rows, saldoIndividual};
+        return response.rows;
     } catch (error) {
         console.log(error.message);
     }
@@ -51,7 +49,7 @@ async function insertMovimiento(req,res,next){
         let data = [
             req.body.tipo,req.body.categoria,
             parseFloat(req.body.importe),req.body.fecha,
-            req.body.observacion,req.session.currentUserId,
+            req.body.observacion,currentUserId,
             parseInt(req.body.cuenta)
         ];
         console.log(data);
@@ -70,8 +68,6 @@ async function insertMovimiento(req,res,next){
 app.use(insertMovimiento);
 
 app.get("/", async (req,res)=>{
-    let currentUserId = req.session.currentUserId;
-    let {userInfo, saldoIndividual} = await getUserInfo(currentUserId);
     try {
         const users = await db.query(
             "SELECT * FROM usuarios;"
@@ -88,7 +84,7 @@ app.get("/", async (req,res)=>{
             users: result,
             currentUser: currentUserId, 
             infoSaldo: saldoIndividual,
-            cuentas: userInfo,
+            cuentas: currentUserInfo,
             movements: movements.rows
         });
 
@@ -99,7 +95,8 @@ app.get("/", async (req,res)=>{
 });
 
 app.post("/user", async (req,res) => {
-    req.session.currentUserId = req.body.user;
+    currentUserId = req.body.user;
+    currentUserInfo = await userInfo();
     res.redirect("/");
 });
 
