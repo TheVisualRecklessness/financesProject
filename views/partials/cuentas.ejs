@@ -1,0 +1,52 @@
+<div class="container" id="cuentas" hidden>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mt-3">Cuentas</h1>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Cuenta</th>
+                                <th scope="col">Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% cuentas.forEach(cuenta => { %>
+                                <tr>
+                                    <td><%= cuenta.cuenta_nombre %></td>
+                                    <td>$<%= cuenta.saldo %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button type="button" id="addCuenta" class="btn btn-primary mt-3">
+                <span class="material-symbols-outlined">
+                add
+                </span></button>
+            <form action="/newCuenta" method="POST" class="mt-3" id="addCuentaForm">
+                <div class="form-group">
+                    <div class="container col-lg-6 mx-auto">
+                        <div class="row mb-3">
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="newCuentaNombre">Nombre de la cuenta</label>
+                                <input type="text" class="form-control" id="newCuentaNombre" name="newCuentaNombre" required>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="newCuentaSaldo">Saldo</label>
+                                <input type="number" step="0.01" class="form-control" id="newCuentaSaldo" name="newCuentaSaldo" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary">Agregar cuenta</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
