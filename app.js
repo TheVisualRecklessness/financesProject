@@ -37,6 +37,7 @@ async function getUserInfo(userId) {
             "ORDER BY cuenta_id",
             [userId]
         );
+
         response.rows.forEach(cuenta => {
             saldoIndividual+=parseFloat(cuenta.saldo);
         });
@@ -83,7 +84,7 @@ app.get("/", async (req,res)=>{
             [currentUserId]
         );
 
-        console.log(movements.rows);
+        console.log(userInfo);
 
         res.render("index.ejs", {
             users: result,
@@ -154,6 +155,21 @@ app.post("/egresos", async (req,res) => {
     } catch (error) {
       console.log(error.message);  
     } 
+});
+
+app.post("/newCuenta", async (req,res) => {
+    let nombre = req.body.newCuentaNombre;
+    let saldo = parseFloat(req.body.newCuentaSaldo);
+    let currentUserId = req.session.currentUserId;
+    try {
+        let newCuenta = await db.query(
+            "INSERT INTO cuentas (nombre,saldo,id_usuario) VALUES ($1,$2,$3);",
+            [nombre,saldo,currentUserId]
+        );
+        res.redirect("/");
+    } catch (error) {
+        console.log(error.message);
+    }
 });
 
 app.listen(port, () => {

@@ -1,0 +1,31 @@
+<div id="movements" hidden>
+    <h2>
+        Movimientos
+    </h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Cuenta</th>
+            <th>Categoria</th>
+            <th>Importe</th>
+            <th>Observacion</th>
+        </tr>
+        <% if (locals.movements) { %>
+            <% movements.forEach(movement => { %>
+                <tr>
+                    <td><%= movement.fecha.toLocaleDateString() %></td>
+                    <td><%= movement.tipo %></td>
+                    <td><%= movement.nombre %></td>
+                    <td><%= movement.categoria %></td>
+                    <td><%= movement.importe %></td>
+                    <td><%= movement.observacion %></td>
+                </tr>
+            <% }); %>
+        <% } else { %>
+            <tr>
+                <td>No hay movimientos</td>
+            </tr>
+        <% } %>
+    </table>
+</div>
