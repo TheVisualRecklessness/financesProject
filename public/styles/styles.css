@@ -17,6 +17,40 @@ body{
     display: none;
 }
 
+#navTitle {
+    margin-left: 3vw;
+}
+
+#navBar {
+    display: none;
+}
+
+#littleNav {
+    display: none;
+    z-index: 1;
+    position: fixed;
+    background-color: rgb(181, 245, 208);
+    right: -300px;
+}
+
+#littleIngresosBtn {
+    margin-top: 2vh;
+}
+
+#littleIngresosBtn, #littleEgresosBtn, #littleMovimientosBtn, #littleCuentasBtn {
+    display: none;
+    margin-bottom: 2vh;
+}
+
+@media (min-width: 992px) {
+    #navBar {
+        display: flex;
+    }
+    #push {
+        display: none;
+    }
+}
+
 /* nav{
     width: 100vw;
     height: 5vh;
