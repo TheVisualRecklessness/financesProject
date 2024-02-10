@@ -7,64 +7,49 @@ $("#addCuenta").click(()=>{
 });
 
 $(".ingresosBtn").click(()=> {
-    if($("#ingresos").attr("hidden")) {
-        $("#ingresos").removeAttr("hidden");
-        $("#egresos").attr("hidden", true);
-        $("#movements").attr("hidden", true);
-        $("#cuentas").attr("hidden", true);
+    if($("#ingresos").is(":hidden")) {
+        $("#ingresos").show();
+        $("#egresos").hide();
+        $("#movements").hide();
+        $("#cuentas").hide();
     } else {
-        $("#ingresos").attr("hidden", true);
+        $("#ingresos").hide();
     }
 });
 
 $(".egresosBtn").click(()=> {
-    if($("#egresos").attr("hidden")) {
-        $("#egresos").removeAttr("hidden");
-        $("#ingresos").attr("hidden", true);
-        $("#movements").attr("hidden", true);
-        $("#cuentas").attr("hidden", true);
+    if($("#egresos").is(":hidden")) {
+        $("#egresos").show();
+        $("#ingresos").hide();
+        $("#movements").hide();
+        $("#cuentas").hide();
     } else {
-        $("#egresos").attr("hidden", true);
+        $("#egresos").hide();
     }
 });
 
 $(".movimientosBtn").click(()=> {
-    if($("#movements").attr("hidden")) {
-        $("#movements").removeAttr("hidden");
-        $("#ingresos").attr("hidden", true);
-        $("#egresos").attr("hidden", true);
-        $("#cuentas").attr("hidden", true);
+    if($("#movements").is(":hidden")) {
+        $("#movements").show();
+        $("#movements").css("display","flex");
+        $("#ingresos").hide();
+        $("#egresos").hide();
+        $("#cuentas").hide();
     } else {
-        $("#movements").attr("hidden", true);
+        $("#movements").hide();
     }
 });
 
 $(".cuentasBtn").click(()=> {
-    if($("#cuentas").attr("hidden")) {
-        $("#cuentas").removeAttr("hidden");
-        $("#ingresos").attr("hidden", true);
-        $("#egresos").attr("hidden", true);
-        $("#movements").attr("hidden", true);
+    if($("#cuentas").is(":hidden")) {
+        $("#cuentas").show();
+        $("#ingresos").hide();
+        $("#egresos").hide();
+        $("#movements").hide();
     } else {
-        $("#cuentas").attr("hidden", true);
+        $("#cuentas").hide();
     }
 });
-
-// $("#push").click(()=>{
-//     if($("#littleIngresosBtn").css("display")=="block") {
-//         $("#littleNav").animate({ "right": "-=300px" }, "slow" );
-//         $("#littleIngresosBtn").css("display","none");
-//         $("#littleEgresosBtn").css("display","none");
-//         $("#littleMovimientosBtn").css("display","none");
-//         $("#littleCuentasBtn").css("display","none");
-//     } else {
-//         $("#littleIngresosBtn").css("display","block");
-//         $("#littleEgresosBtn").css("display","block");
-//         $("#littleMovimientosBtn").css("display","block");
-//         $("#littleCuentasBtn").css("display","block");
-//         $("#littleNav").animate({ "right": "+=300px" }, "slow" );
-//     }
-// }); 
 
 $("#push").click(()=>{
     if($("#littleIngresosBtn").css("display")=="none") {

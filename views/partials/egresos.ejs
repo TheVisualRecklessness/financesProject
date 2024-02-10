@@ -1,26 +1,50 @@
-<div id="egresos" hidden>
-    <h2>
-        Inserta tu egreso!
-    </h2>
-    <form action="/egresos" method="POST">
-        <label for="tipoFormEgresos" hidden></label>
-        <input type="text" name="tipo" id="tipoFormEgresos" value="Egreso" hidden>
-        <label for="cuentaFormEgresos">Cuenta </label>
-        <select name="cuenta" id="cuentaFormEgresos">
-            <option value="" disabled selected hidden>Elegir cuenta</option>
-            <% cuentas.forEach(cuenta => { %>
-                <option value="<%= cuenta.cuenta_id %>"><%= cuenta.cuenta_nombre %></option>
-            <% }); %>
-        </select>
-        <label for="categoriaFormEgresos">Categoria </label>
-        <input type="text" name="categoria" id="categoriaFormEgresos">
-        <label for="importeFormEgresos">Importe </label>
-        <input type="number" step="0.01" name="importe" id="importeFormEgresos">
-        <label for="fechaFormEgresos">Fecha </label>
-        <input type="date" name="fecha" id="fechaFormEgresos">
-        <label for="observacionFormEgresos">Observacion </label>
-        <input type="text" name="observacion" id="observacionFormEgresos">
-        <input type="number" name="id_usuario" value="<%= currentUser %>" disabled hidden>
-        <input type="submit">
-    </form>
+<div class="container">
+    <div class="row" id="egresos">
+        <div class="col-12 d-flex justify-content-center">
+            <h2>
+                Inserta tu egreso!
+            </h2>
+        </div>
+        <div class="row">
+            <form id="egresosForm" action="/egresos" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="tipoFormEgresos" hidden></label>
+                    <input class="form-control" type="text" name="tipo" id="tipoFormEgresos" value="Egreso" hidden>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="cuentaFormEgresos">Cuenta </label>
+                    <select class="form-select" name="cuenta" id="cuentaFormEgresos">
+                    <option value="" disabled selected hidden>Elegir cuenta</option>
+                    <% cuentas.forEach(cuenta => { %>
+                        <option value="<%= cuenta.cuenta_id %>"><%= cuenta.cuenta_nombre %></option>
+                    <% }); %>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="categoriaFormEgresos">Categoria </label>
+                    <input class="form-control" type="text" name="categoria" id="categoriaFormEgresos">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="importeFormEgresos">Importe </label>
+                    <input class="form-control" type="number" step="0.01" name="importe" id="importeFormEgresos">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="fechaFormEgresos">Fecha </label>
+                    <input class="form-control" type="date" name="fecha" id="fechaFormEgresos">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="observacionFormEgresos">Observacion </label>
+                    <input class="form-control" type="text" name="observacion" id="observacionFormEgresos">
+                </div>
+                <div class="mb-3 d-flex justify-content-center">
+                    <input class="form-control" type="number" name="id_usuario" value="<%= currentUser %>" disabled hidden>
+                    <input class="btn btn-outline-success" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+<!-- <div id="egresos">
+    
+</div> -->

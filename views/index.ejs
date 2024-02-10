@@ -1,11 +1,19 @@
 <%- include("./partials/header.ejs") %>
 
+    <div id="infoStatic">
+        <h1>
+            <% if (locals.infoSaldo) { %>
+                Saldo de <%= users[currentUser-1].nombre %>: $<%= infoSaldo %>
+            <% } else { %>
+                Selecciona a un usuario!
+            <% } %>
+        </h1>
         <% if(locals.users) {%>
-            <form action="/user" method="POST">
+            <form id="userForm" action="/user" method="POST">
                 <% users.forEach(user => { %>
                     <button 
                             type="submit" 
-                            class="search-by-id" 
+                            class="btn btn-info text-black" 
                             name="user" 
                             value="<%= user.id %>" 
                             id="<%= user.id %>"
@@ -17,18 +25,13 @@
         <% } else { %>
             Prueba mas tarde.
         <% } %>
-        <h1>
-            <% if (locals.infoSaldo) { %>
-                Saldo de <%= users[currentUser-1].nombre %>: $<%= infoSaldo %>
-            <% } else { %>
-                Selecciona a un usuario!
-            <% } %>
-        </h1>
+    </div>
 
         <%- include("./partials/ingresos") %>
         <%- include("./partials/egresos") %>
         <%- include("./partials/movimientos") %>
         <%- include("./partials/cuentas") %>
+        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="/scripts/scripts.js" async defer></script>

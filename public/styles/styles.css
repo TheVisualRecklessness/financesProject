@@ -21,13 +21,19 @@ body{
     margin-left: 3vw;
 }
 
+#navPrincipal {
+    z-index: 2;
+    position: fixed;
+    width: 100vw;
+}
+
 #navBar {
     display: none;
 }
 
 #littleNav {
     display: none;
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     background-color: rgb(181, 245, 208);
     right: -300px;
@@ -42,12 +48,61 @@ body{
     margin-bottom: 2vh;
 }
 
+#movements {
+    font-size: 0.63rem;
+}
+
+#infoStatic {
+    position: fixed;
+    z-index: 1;
+    position: fixed;
+    top: 6.3vh;
+    width: 100vw;
+    background-color: white;
+}
+
+#infoStatic>h1 {
+    font-size: 1.5rem;
+}
+
+#ingresos, #egresos, #movements, #cuentas {
+    display: none;
+    position: relative;
+    top: 15vh;
+}
+
+#ingresosForm, #egresosForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+#ingresosForm>div, #egresosForm>div {
+    width: 70vw;
+}
+
+
+
 @media (min-width: 992px) {
     #navBar {
         display: flex;
     }
     #push {
         display: none;
+    }
+    #movements {
+        font-size: 1rem;
+        display: none;
+    }
+    #ingresos>.row>form>div {
+        width: 50vw;
+    }
+    #egresos>.row>form>div {
+        width: 50vw;
+    }
+    #infoStatic>h1 {
+        font-size: 2.5rem;
     }
 }
 

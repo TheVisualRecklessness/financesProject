@@ -1,26 +1,51 @@
-<div id="ingresos" hidden>
-    <h2>
-        Inserta tu ingreso!
-    </h2>
-    <form action="/ingresos" method="POST">
-        <label for="tipoForm" hidden></label>
-        <input type="text" name="tipo" id="tipoForm" value="Ingreso" hidden>
-        <label for="cuentaForm">Cuenta </label>
-        <select name="cuenta" id="cuentaForm">
-            <option value="" disabled selected hidden>Elegir cuenta</option>
-            <% cuentas.forEach(cuenta => { %>
-                <option value="<%= cuenta.cuenta_id %>"><%= cuenta.cuenta_nombre %></option>
-            <% }); %>
-        </select>
-        <label for="categoriaForm">Categoria </label>
-        <input type="text" name="categoria" id="categoriaForm">
-        <label for="importeForm">Importe </label>
-        <input type="number" step="0.01" name="importe" id="importeForm">
-        <label for="fechaForm">Fecha </label>
-        <input type="date" name="fecha" id="fechaForm">
-        <label for="observacionForm">Observacion </label>
-        <input type="text" name="observacion" id="observacionForm">
-        <input type="number" name="id_usuario" value="<%= currentUser %>" disabled hidden>
-        <input type="submit">
-    </form>
+<div class="container">
+    <div class="row" id="ingresos">
+        <div class="col-12 d-flex justify-content-center">
+            <h2>
+                Inserta tu ingreso!
+            </h2>
+        </div>
+        <div class="row">
+            <form id="ingresosForm" action="/ingresos" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="tipoForm" hidden></label>
+                    <input class="form-control" type="text" name="tipo" id="tipoForm" value="Ingreso" hidden>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="cuentaForm">Cuenta </label>
+                    <select class="form-select" name="cuenta" id="cuentaForm">
+                    <option value="" disabled selected hidden>Elegir cuenta</option>
+                    <% cuentas.forEach(cuenta => { %>
+                        <option value="<%= cuenta.cuenta_id %>"><%= cuenta.cuenta_nombre %></option>
+                    <% }); %>
+                </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="categoriaForm">Categoria </label>
+                    <input class="form-control" type="text" name="categoria" id="categoriaForm">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="importeForm">Importe </label>
+                    <input class="form-control" type="number" step="0.01" name="importe" id="importeForm">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="fechaForm">Fecha </label>
+                    <input class="form-control" type="date" name="fecha" id="fechaForm">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="observacionForm">Observacion </label>
+                    <input class="form-control" type="text" name="observacion" id="observacionForm">
+                </div>
+                <div class="mb-3 d-flex justify-content-center">
+                    <input class="form-control" type="number" name="id_usuario" value="<%= currentUser %>" disabled hidden>
+                    <input class="btn btn-outline-success" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+
+<!-- <div id="ingresos">
+    
+</div> -->

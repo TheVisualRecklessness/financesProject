@@ -76,15 +76,13 @@ app.get("/", async (req,res)=>{
     let {userInfo, saldoIndividual} = await getUserInfo(currentUserId);
     try {
         const users = await db.query(
-            "SELECT * FROM usuarios;"
+            "SELECT * FROM usuarios ORDER BY id;"
         );
         const result = users.rows;
         const movements = await db.query(
-            "SELECT movimientos.id,movimientos.tipo,movimientos.categoria,movimientos.importe,movimientos.fecha,movimientos.observacion, cuentas.nombre FROM movimientos JOIN cuentas ON movimientos.id_cuenta = cuentas.id WHERE movimientos.id_usuario=$1;",
+            "SELECT movimientos.id,movimientos.tipo,movimientos.categoria,movimientos.importe,movimientos.fecha,movimientos.observacion, cuentas.nombre FROM movimientos JOIN cuentas ON movimientos.id_cuenta = cuentas.id WHERE movimientos.id_usuario=$1 ORDER BY id ASC;",
             [currentUserId]
         );
-
-        console.log(userInfo);
 
         res.render("index.ejs", {
             users: result,
