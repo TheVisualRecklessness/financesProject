@@ -170,6 +170,73 @@ app.post("/newCuenta", async (req,res) => {
     }
 });
 
+app.post("/transferencias", async (req,res) => {
+    let monto = parseFloat(req.body.monto);
+    let cuentaOrigen = req.body.cuentaOrigen;
+    let cuentaDestino = req.body.cuentaDestino;
+
+    try {
+        let data = [
+            "Egreso","Transferencia entre cuentas propias",
+            monto,req.body.fecha,
+            req.body.observacion,req.session.currentUserId,
+            parseInt(cuentaOrigen)
+        ];
+        let upMovOrigen = await db.query(
+            "INSERT INTO movimientos (tipo,categoria,importe,fecha,observacion,id_usuario,id_cuenta) VALUES ($1,$2,$3,$4,$5,$6,$7);",
+            data
+        );
+
+        let quSaldoOrigen = await db.query(
+            "SELECT saldo "+
+            "FROM cuentas "+
+            "WHERE id=$1",
+            [cuentaOrigen]
+        );
+        let antiguoSaldoOrigen = parseFloat(quSaldoOrigen.rows[0].saldo);
+        let nuevoSaldoOrigen = antiguoSaldoOrigen-monto;
+        
+        let upSaldoOrigen = await db.query(
+            "UPDATE cuentas "+
+            "SET saldo = $1 "+
+            "WHERE id = $2;",
+            [nuevoSaldoOrigen,cuentaOrigen]
+        );
+
+        data = [
+            "Ingreso","Transferencia entre cuentas propias",
+            monto,req.body.fecha,
+            req.body.observacion,req.session.currentUserId,
+            parseInt(cuentaDestino)
+        ];
+
+        let upMovDestino = await db.query(
+            "INSERT INTO movimientos (tipo,categoria,importe,fecha,observacion,id_usuario,id_cuenta) VALUES ($1,$2,$3,$4,$5,$6,$7);",
+            data
+        );
+
+        let quSaldoDestino = await db.query(
+            "SELECT saldo "+
+            "FROM cuentas "+
+            "WHERE id=$1",
+            [cuentaDestino]
+        );
+        let antiguoSaldoDestino = parseFloat(quSaldoDestino.rows[0].saldo);
+        let nuevoSaldoDestino = antiguoSaldoDestino+monto;
+        
+        let upSaldoDestino = await db.query(
+            "UPDATE cuentas "+
+            "SET saldo = $1 "+
+            "WHERE id = $2;",
+            [nuevoSaldoDestino,cuentaDestino]
+        );
+        res.redirect("/");
+        
+    } catch (error) {
+      console.log(error.message);  
+    } 
+});
+
 app.listen(port, () => {
     console.log(`Servidor iniciado en el puerto ${port}.`);
 });

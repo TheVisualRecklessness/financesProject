@@ -43,7 +43,9 @@ body{
     margin-top: 2vh;
 }
 
-#littleIngresosBtn, #littleEgresosBtn, #littleMovimientosBtn, #littleCuentasBtn {
+#littleIngresosBtn, #littleEgresosBtn,
+#littleMovimientosBtn, #littleCuentasBtn,
+#littleTransferenciasBtn {
     display: none;
     margin-bottom: 2vh;
 }
@@ -65,24 +67,22 @@ body{
     font-size: 1.5rem;
 }
 
-#ingresos, #egresos, #movements, #cuentas {
+#ingresos, #egresos, #movements, #cuentas, #transferencias {
     display: none;
     position: relative;
-    top: 15vh;
+    top: 18vh;
 }
 
-#ingresosForm, #egresosForm{
+#ingresosForm, #egresosForm, #transferenciasForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: auto;
 }
 
-#ingresosForm>div, #egresosForm>div {
+#ingresosForm>div, #egresosForm>div, #transferenciasForm>div {
     width: 70vw;
 }
-
-
 
 @media (min-width: 992px) {
     #navBar {
@@ -95,10 +95,8 @@ body{
         font-size: 1rem;
         display: none;
     }
-    #ingresos>.row>form>div {
-        width: 50vw;
-    }
-    #egresos>.row>form>div {
+    #ingresos>.row>form>div, #egresos>.row>form>div,
+    #transferencias>.row>form>div {
         width: 50vw;
     }
     #infoStatic>h1 {
