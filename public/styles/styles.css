@@ -51,14 +51,14 @@ body{
 }
 
 #movements {
-    font-size: 0.63rem;
+    font-size: 0.5706rem;
 }
 
 #infoStatic {
     position: fixed;
     z-index: 1;
     position: fixed;
-    top: 6.3vh;
+    top: 60px;
     width: 100vw;
     background-color: white;
 }
@@ -70,7 +70,7 @@ body{
 #ingresos, #egresos, #movements, #cuentas, #transferencias {
     display: none;
     position: relative;
-    top: 18vh;
+    top: 140px;
 }
 
 #ingresosForm, #egresosForm, #transferenciasForm {
@@ -85,6 +85,19 @@ body{
 }
 
 @media (min-width: 992px) {
+    #ingresos, #egresos, #movements, #cuentas, #transferencias {
+        display: none;
+        position: relative;
+        top: 30vh;
+    }
+    #infoStatic {
+        position: fixed;
+        z-index: 1;
+        position: fixed;
+        top: 8vh;
+        width: 100vw;
+        background-color: white;
+    }
     #navBar {
         display: flex;
     }
