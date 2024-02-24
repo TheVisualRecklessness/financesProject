@@ -4,6 +4,10 @@ import bodyParser from 'body-parser';
 import { conf } from "./config.js";
 import pg from "pg";
 
+
+const date = new Date();
+const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 const app = express();
 const port = conf.serverPort;
 const db = new pg.Client({
@@ -72,8 +76,8 @@ async function insertMovimiento(req,res,next){
 app.use(insertMovimiento);
 
 app.get("/", async (req,res)=>{
-    let currentUserId = req.session.currentUserId;
-    let {userInfo, saldoIndividual} = await getUserInfo(currentUserId);
+    const currentUserId = req.session.currentUserId;
+    const {userInfo, saldoIndividual} = await getUserInfo(currentUserId);
     try {
         const users = await db.query(
             "SELECT * FROM usuarios ORDER BY id;"
@@ -83,13 +87,26 @@ app.get("/", async (req,res)=>{
             "SELECT movimientos.id,movimientos.tipo,movimientos.categoria,movimientos.importe,movimientos.fecha,movimientos.observacion, cuentas.nombre FROM movimientos JOIN cuentas ON movimientos.id_cuenta = cuentas.id WHERE movimientos.id_usuario=$1 ORDER BY id ASC;",
             [currentUserId]
         );
+        const datos_mes = await db.query(
+            'SELECT egresos_mes($1,$2,$3), ingresos_mes($1,$2,$3), restante($1,$2,$3)',
+            [currentUserId,firstDay,lastDay]
+        );
+
+        let limite_gasto = 6000;
+
+        let egreso_mes = Math.round((datos_mes.rows[0].egresos_mes)*100)/100;
+        let ingreso_mes = Math.round((datos_mes.rows[0].ingresos_mes)*100)/100;
+        let restante = Math.round((limite_gasto-(datos_mes.rows[0].restante))*100)/100;
 
         res.render("index.ejs", {
             users: result,
             currentUser: currentUserId, 
             infoSaldo: saldoIndividual,
             cuentas: userInfo,
-            movements: movements.rows
+            movements: movements.rows,
+            egreso_mes: egreso_mes,
+            ingreso_mes: ingreso_mes,
+            restante: restante
         });
 
     } catch (error) {

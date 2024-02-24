@@ -67,10 +67,16 @@ body{
     font-size: 1.5rem;
 }
 
+#resumen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 #ingresos, #egresos, #movements, #cuentas, #transferencias {
     display: none;
     position: relative;
-    top: 140px;
+    top: 260px;
 }
 
 #ingresosForm, #egresosForm, #transferenciasForm {
@@ -88,13 +94,13 @@ body{
     #ingresos, #egresos, #movements, #cuentas, #transferencias {
         display: none;
         position: relative;
-        top: 30vh;
+        top: 15vh;
     }
     #infoStatic {
         position: fixed;
         z-index: 1;
         position: fixed;
-        top: 8vh;
+        top: 6vh;
         width: 100vw;
         background-color: white;
     }
@@ -114,6 +120,9 @@ body{
     }
     #infoStatic>h1 {
         font-size: 2.5rem;
+    }
+    #resumen {
+        flex-direction: row;
     }
 }
 
