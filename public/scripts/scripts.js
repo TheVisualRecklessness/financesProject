@@ -13,6 +13,7 @@ $(".ingresosBtn").click(()=> {
         $("#movements").hide();
         $("#cuentas").hide();
         $("#transferencias").hide();
+        $("#resumen").hide();
     } else {
         $("#ingresos").hide();
     }
@@ -25,6 +26,7 @@ $(".egresosBtn").click(()=> {
         $("#movements").hide();
         $("#cuentas").hide();
         $("#transferencias").hide();
+        $("#resumen").hide();
     } else {
         $("#egresos").hide();
     }
@@ -37,6 +39,7 @@ $(".transferenciasBtn").click(()=> {
         $("#egresos").hide();
         $("#movements").hide();
         $("#cuentas").hide();
+        $("#resumen").hide();
     } else {
         $("#transferencias").hide();
     }
@@ -50,6 +53,7 @@ $(".movimientosBtn").click(()=> {
         $("#egresos").hide();
         $("#cuentas").hide();
         $("#transferencias").hide();
+        $("#resumen").hide();
     } else {
         $("#movements").hide();
     }
@@ -62,8 +66,22 @@ $(".cuentasBtn").click(()=> {
         $("#egresos").hide();
         $("#movements").hide();
         $("#transferencias").hide();
+        $("#resumen").hide();
     } else {
         $("#cuentas").hide();
+    }
+});
+
+$(".resumenBtn").click(()=> {
+    if($("#resumen").is(":hidden")) {
+        $("#resumen").show();
+        $("#ingresos").hide();
+        $("#egresos").hide();
+        $("#movements").hide();
+        $("#cuentas").hide();
+        $("#transferencias").hide();
+    } else {
+        $("#resumen").hide();
     }
 });
 
@@ -80,6 +98,8 @@ $("#push").click(()=>{
         $("#littleMovimientosBtn").css("display","block");
         $("#littleCuentasBtn").show();
         $("#littleCuentasBtn").css("display","block");
+        $("#littleResumenBtn").show();
+        $("#littleResumenBtn").css("display","block");
     } else {
         $("#littleNav").animate({ "right": "-=300px" }, "fast");
         $("#littleIngresosBtn").hide();
@@ -87,5 +107,6 @@ $("#push").click(()=>{
         $("#littleTransferenciasBtn").hide();
         $("#littleMovimientosBtn").hide();
         $("#littleCuentasBtn").hide();
+        $("#littleResumenBtn").hide();
     }
 });

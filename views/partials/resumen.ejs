@@ -1,0 +1,14 @@
+<div id="resumen">
+    <h1>
+        <% if (locals.infoSaldo) { %>
+            Saldo de <%= users[currentUser-1].nombre %>: $<%= infoSaldo %>
+        <% } else { %>
+            Selecciona a un usuario!
+        <% } %>
+    </h1>
+    <% if (locals.restante) { %>
+        <h2>Egresos del mes: $<%= egreso_mes %></h2>
+        <h2>Ingresos del mes: $<%= ingreso_mes %></h2>
+        <h2>Restante del mes: $<%= restante %></h2>
+    <% } %>
+</div>

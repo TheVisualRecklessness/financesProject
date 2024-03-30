@@ -1,20 +1,6 @@
 <%- include("./partials/header.ejs") %>
 
     <div id="infoStatic">
-        <div id="resumen">
-            <h1>
-                <% if (locals.infoSaldo) { %>
-                    Saldo de <%= users[currentUser-1].nombre %>: $<%= infoSaldo %>
-                <% } else { %>
-                    Selecciona a un usuario!
-                <% } %>
-            </h1>
-            <% if (locals.restante) { %>
-                <h2>Egresos del mes: $<%= egreso_mes %></h2>
-                <h2>Ingresos del mes: $<%= ingreso_mes %></h2>
-                <h2>Restante del mes: $<%= restante %></h2>
-            <% } %>
-        </div>
         <% if(locals.users) {%>
             <form id="userForm" action="/user" method="POST">
                 <% users.forEach(user => { %>
@@ -39,6 +25,7 @@
         <%- include("./partials/movimientos") %>
         <%- include("./partials/cuentas") %>
         <%- include("./partials/transferencias") %>
+        <%- include("./partials/resumen") %>
         
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

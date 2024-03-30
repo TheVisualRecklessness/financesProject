@@ -76,7 +76,7 @@ body{
 #ingresos, #egresos, #movements, #cuentas, #transferencias {
     display: none;
     position: relative;
-    top: 260px;
+    top: 14.6926vh;
 }
 
 #ingresosForm, #egresosForm, #transferenciasForm {
@@ -90,8 +90,12 @@ body{
     width: 70vw;
 }
 
-.section-data {
-    padding-top: 25.42407vh;
+#resumen {
+    padding-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 
@@ -127,12 +131,11 @@ body{
         font-size: 2.5rem;
     }
     #resumen {
-        flex-direction: row;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
     }
-    .section-data {
-        padding-top: 14.07407vh;
-    }
-    
 }
 
 /* nav{
