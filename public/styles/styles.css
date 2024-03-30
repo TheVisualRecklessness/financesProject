@@ -73,7 +73,8 @@ body{
     justify-content: space-around;
 }
 
-#ingresos, #egresos, #movements, #cuentas, #transferencias {
+#ingresos, #egresos, #movements,
+#cuentas, #transferencias, #resumen {
     display: none;
     position: relative;
     top: 14.6926vh;
