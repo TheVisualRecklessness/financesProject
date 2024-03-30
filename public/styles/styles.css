@@ -90,6 +90,11 @@ body{
     width: 70vw;
 }
 
+.section-data {
+    padding-top: 25.42407vh;
+}
+
+
 @media (min-width: 992px) {
     #ingresos, #egresos, #movements, #cuentas, #transferencias {
         display: none;
@@ -124,6 +129,10 @@ body{
     #resumen {
         flex-direction: row;
     }
+    .section-data {
+        padding-top: 14.07407vh;
+    }
+    
 }
 
 /* nav{
